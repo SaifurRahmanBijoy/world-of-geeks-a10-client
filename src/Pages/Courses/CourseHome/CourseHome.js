@@ -6,7 +6,7 @@ const CourseHome = () => {
   const courses = useLoaderData();
   return (
     <div className="grid grid-cols-1 sm:grid-cols-4">
-      <div className="">
+      <div className="p-4">
         <SideNav courses={courses}></SideNav>
       </div>
       <div className="col-span-3">
