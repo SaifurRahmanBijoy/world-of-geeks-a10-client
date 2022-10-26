@@ -1,14 +1,26 @@
 import React, { useState } from "react";
+import { GoogleAuthProvider } from "firebase/auth";
 import { useContext } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../Contexts/AuthProvider";
 
 const Login = () => {
   const [error, setError] = useState("");
-  const { signIn, setLoading } = useContext(AuthContext);
+  const { signIn, setLoading,providerLogin } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/courses";
+
+  const googleProvider = new GoogleAuthProvider();
+
+  const handleGoogleSignIn = () => {
+    providerLogin(googleProvider)
+      .then((res) => {
+        const user = res.user;
+        console.log(user);
+      })
+      .catch((error) => console.error(error));
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -74,11 +86,11 @@ const Login = () => {
             </button>
             <button
               className="py-4 bg-green-400 w-full rounded text-blue-50 font-bold hover:bg-green-700"
-              //   onClick={handleGoogleSignIn}
+                onClick={handleGoogleSignIn}
             >
               Login with Google
             </button>
-            <p className="text-red-400 py-1 d-block">{error.slice(9,100)}</p>
+            <p className="text-red-400 py-1 d-block">{error.slice(9, 100)}</p>
           </div>
         </form>
       </div>
