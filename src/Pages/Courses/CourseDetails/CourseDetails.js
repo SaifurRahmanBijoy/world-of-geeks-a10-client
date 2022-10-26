@@ -1,5 +1,5 @@
 import React from "react";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 
 const CourseDetails = () => {
   const course = useLoaderData();
@@ -12,6 +12,7 @@ const CourseDetails = () => {
         <div className="px-6 py-4">
           <p className="text-grey-darker text-base">{description}</p>
         </div>
+      <Link name={course.name} to='/courses/access'>Get Premium Access</Link>
       </div>
     </div>
   );

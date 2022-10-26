@@ -1,73 +1,54 @@
-import React, { useState } from "react";
-import { useContext } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { AuthContext } from "../../../Contexts/AuthProvider";
 
-const Register = () => {
-  const [error, setError] = useState("");
-  const { createUser, updateUserProfile } =
-    useContext(AuthContext);
+const Profile = () => {
+  const { user, updateUserProfile } = useContext(AuthContext);
+  const [name, setName] = useState(user.displayName);
+  const photoURLRef = useRef(user.photoURL);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const form = event.target;
-    const name = form.name.value;
-    const photoURL = form.photo.value;
-    const email = form.email.value;
-    const password = form.password.value;
-    console.log(name, email, password, photoURL);
-
-    createUser(email, password)
-      .then((res) => {
-        const user = res.user;
-        console.log(user);
-        setError("");
-        form.reset();
-        handleUpdateUserProfile(name, photoURL);
-      })
-      .catch((error) => {
-        console.error(error);
-        setError(error.message);
-      });
-  };
-
-  const handleUpdateUserProfile = (name, photoURL) => {
-    const profile = {
-      displayName: name,
-      photoURL: photoURL,
-    };
+    console.log(photoURLRef.current.value);
+    const profile = { displayName: name, photoURL: photoURLRef };
     updateUserProfile(profile)
       .then(() => {})
       .catch((error) => console.error(error));
+  };
+
+  const handleChange = (event) => {
+    setName(event.target.value);
   };
   return (
     <div className="bg-gray-10 mt-6">
       <div className="flex justify-center  items-center">
         <form
-            onSubmit={handleSubmit}
+          onSubmit={handleSubmit}
           className="w-full md:w-1/2 flex flex-col items-center "
         >
           <h1 className="text-center text-3xl font-bold text-gray-600 mb-6">
-            REGISTER
+            User Profile
           </h1>
 
           <div className="w-3/4 mb-6">
             <input
               type="text"
               name="name"
+              onChange={handleChange}
+              defaultValue={user?.displayName}
               id="name"
               className="w-full py-4 px-8 bg-slate-200 placeholder:font-semibold rounded hover:ring-1 outline-blue-500"
               placeholder="User Name"
-              required
             />
           </div>
 
           <div className="w-3/4 mb-6">
             <input
+              ref={photoURLRef}
+              defaultValue={user?.photoURL}
               type="text"
+              placeholder="Photo URL"
               name="photo"
-              id="photo"
               className="w-full py-4 px-8 bg-slate-200 placeholder:font-semibold rounded hover:ring-1 outline-blue-500"
-              placeholder="User Photo URL"
             />
           </div>
 
@@ -75,21 +56,11 @@ const Register = () => {
             <input
               type="email"
               name="email"
+              defaultValue={user?.email}
+              readOnly
               id="email"
               className="w-full py-4 px-8 bg-slate-200 placeholder:font-semibold rounded hover:ring-1 outline-blue-500"
               placeholder="User Email"
-              required
-            />
-          </div>
-
-          <div className="w-3/4 mb-6">
-            <input
-              type="password"
-              name="password"
-              id="password"
-              className="w-full py-4 px-8 bg-slate-200 placeholder:font-semibold rounded hover:ring-1 outline-blue-500 "
-              placeholder="Password"
-              required
             />
           </div>
 
@@ -99,9 +70,8 @@ const Register = () => {
               className="py-4 bg-blue-400 w-full rounded text-blue-50 font-bold hover:bg-blue-700"
             >
               {" "}
-              REGISTER
+              Update
             </button>
-            <p className="text-red-400 text-md">{error}</p>
           </div>
         </form>
       </div>
@@ -109,4 +79,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default Profile;
