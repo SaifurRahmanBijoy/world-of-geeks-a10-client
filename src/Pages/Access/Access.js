@@ -9,7 +9,7 @@ const course=useLoaderData()
       <p className="text-2xl text-center font-thin">
         You are about to buy the course: <span className="text-green-500 font-semibold">{course.name}</span>
       </p>
-      <img className="w-3/4 mx-auto my-3 shadow-md border-2" src={course.img} alt="" />
+      <img className="w-3/4 mx-auto my-3 shadow-md border-2 bg-slate-100 p-2" src={course.img} alt="" />
     </div>
   );
 };

@@ -78,7 +78,7 @@ const Login = () => {
             >
               Login with Google
             </button>
-            <p className="text-red-400 d-block">{error}</p>
+            <p className="text-red-400 py-1 d-block">{error.slice(9,100)}</p>
           </div>
         </form>
       </div>
