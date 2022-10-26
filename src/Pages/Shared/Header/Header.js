@@ -13,7 +13,7 @@ const Header = () => {
   return (
     <div className="bg-blue-50 shadow-md">
       <div className="container mx-auto px-4">
-        <div className="flex flex-wrap sm:flex-row items-center justify-between py-2">
+        <div className="flex flex-col sm:flex-row items-center justify-between py-2">
           <nav className="flex justify-center items-center">
             <img
               className="w-8 mr-2"
@@ -44,7 +44,7 @@ const Header = () => {
             </Link>
           </div>
 
-          <div className="sm:flex sm:flex-wrap sm:items-center">
+          <div className="sm:flex flex items-center sm:flex-wrap sm:items-center">
             <Link to="/profile" className="mr-3 my-1 flex justify-center">
               {user?.photoURL ? (
                 <img className="w-8 rounded-full" src={user?.photoURL} alt="" />
