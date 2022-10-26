@@ -44,8 +44,8 @@ const Header = () => {
             </Link>
           </div>
 
-          <div className="sm:flex sm:items-center">
-            <Link to="/profile" className="mr-3">
+          <div className="sm:flex sm:flex-wrap sm:items-center">
+            <Link to="/profile" className="mr-3 my-1 flex justify-center">
               {user?.photoURL ? (
                 <img className="w-8 rounded-full" src={user?.photoURL} alt="" />
               ) : (
