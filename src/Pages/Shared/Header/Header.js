@@ -11,19 +11,19 @@ const Header = () => {
       .catch((error) => console.error(error));
   };
   return (
-    <div className="bg-blue-50 shadow">
+    <div className="bg-blue-50 shadow-md">
       <div className="container mx-auto px-4">
-        <div className="flex flex-col sm:flex-row items-center justify-between py-2">
+        <div className="flex flex-wrap sm:flex-row items-center justify-between py-2">
           <nav className="flex justify-center items-center">
             <img
               className="w-8 mr-2"
               src="https://cdn-icons-png.flaticon.com/512/607/607421.png"
               alt="pix"
             />
-            <h2 className="font-serif">Worlds of Geeks</h2>
+            <h2 className="font-serif hover:bg-blue-100 py-1 px-2"><Link to='/courses'>Worlds of Geeks</Link></h2>
           </nav>
 
-          <div className="sm:flex sm:items-center">
+          <div className="flex-col sm:flex sm:flex-row py-1 sm:items-center">
             <Link
               to="/courses"
               className="text-gray-800 text-sm font-semibold hover:text-purple-600 mr-4"
@@ -54,7 +54,7 @@ const Header = () => {
             </Link>
             {user ? (
               <>
-                <span className="mr-4 font-mono text-sm">
+                <span className=" mr-4 font-mono text-sm">
                   {user?.displayName}
                 </span>
                 <button
