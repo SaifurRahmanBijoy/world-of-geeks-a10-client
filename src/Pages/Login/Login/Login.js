@@ -1,17 +1,27 @@
 import React, { useState } from "react";
-import { GoogleAuthProvider } from "firebase/auth";
+import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
 import { useContext } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../Contexts/AuthProvider";
 
 const Login = () => {
   const [error, setError] = useState("");
-  const { signIn, setLoading,providerLogin } = useContext(AuthContext);
+  const { signIn, setLoading, providerLogin } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/courses";
 
   const googleProvider = new GoogleAuthProvider();
+  const gitProvider = new GithubAuthProvider();
+
+  const handleGitHubSignIn = () => {
+    providerLogin(gitProvider)
+      .then((res) => {
+        const user = res.user;
+        console.log(user);
+      })
+      .catch((error) => console.error(error));
+  };
 
   const handleGoogleSignIn = () => {
     providerLogin(googleProvider)
@@ -85,10 +95,16 @@ const Login = () => {
               LOGIN
             </button>
             <button
-              className="py-4 bg-green-400 w-full rounded text-blue-50 font-bold hover:bg-green-700"
-                onClick={handleGoogleSignIn}
+              className="py-4 bg-green-400 mb-2 w-full rounded text-blue-50 font-bold hover:bg-green-700"
+              onClick={handleGoogleSignIn}
             >
               Login with Google
+            </button>
+            <button
+              className="py-4 bg-black w-full rounded text-blue-50 font-bold hover:bg-green-700"
+              onClick={handleGitHubSignIn}
+            >
+              Login with GitHub
             </button>
             <p className="text-red-400 py-1 d-block">{error.slice(9, 100)}</p>
           </div>
