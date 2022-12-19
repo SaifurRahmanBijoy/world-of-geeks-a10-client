@@ -1,9 +1,10 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, Link } from "react-router-dom";
 import Main from "../../layout/Main";
 import Access from "../../Pages/Access/Access";
 import CourseCards from "../../Pages/Courses/CourseCards/CourseCards";
 import CourseDetails from "../../Pages/Courses/CourseDetails/CourseDetails";
 import CourseHome from "../../Pages/Courses/CourseHome/CourseHome";
+import Home from "../../Pages/Home/Home";
 import Login from "../../Pages/Login/Login/Login";
 import Register from "../../Pages/Login/Register/Register";
 import Blog from "../../Pages/Other/Blog/Blog";
@@ -16,6 +17,10 @@ export const router = createBrowserRouter([
     path: "/",
     element: <Main></Main>,
     children: [
+      {
+        path: "/",
+        element: <Home></Home>,
+      },
       {
         path: "/login",
         element: <Login></Login>,
@@ -87,6 +92,9 @@ export const router = createBrowserRouter([
           <div>
             <p className="text-4xl text-center my-4 text-blue-400">
               404 not found:Please Enter Correctly
+            </p>
+            <p className="text-4xl text-center text-blue-400">
+              or go <Link to="/">Home</Link>
             </p>
           </div>
         ),
