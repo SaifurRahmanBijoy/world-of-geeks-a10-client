@@ -5,9 +5,9 @@ import Header from "../Pages/Shared/Header/Header";
 
 const Main = () => {
   return (
-    <div className="">
+    <div>
       <Header></Header>
-      <div className="min-h-screen flex justify-center items-center">
+      <div className="flex items-center justify-center">
         <Outlet></Outlet>
       </div>
       <Footer></Footer>

@@ -89,7 +89,7 @@ export const router = createBrowserRouter([
       {
         path: "*",
         element: (
-          <div>
+          <div className="flex flex-col justify-center items-center">
             <p className="text-4xl text-center my-4 text-blue-400">
               404 not found:Please Enter Correctly
             </p>
