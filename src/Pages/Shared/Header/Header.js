@@ -15,12 +15,16 @@ const Header = () => {
       <div className="container mx-auto px-4">
         <div className="flex flex-col sm:flex-row items-center justify-between py-2">
           <nav className="flex justify-center items-center">
-            <img
-              className="w-8 mr-2"
-              src="https://cdn-icons-png.flaticon.com/512/607/607421.png"
-              alt="pix"
-            />
-            <h2 className="font-serif hover:bg-blue-100 py-1 px-2"><Link to='/courses'>Worlds of Geeks</Link></h2>
+            <Link to="/">
+              <img
+                className="w-8 mr-2"
+                src="https://cdn-icons-png.flaticon.com/512/607/607421.png"
+                alt="pix"
+              />
+            </Link>
+            <h2 className="font-serif hover:bg-blue-100 py-1 px-2">
+              <Link to="/courses">Worlds of Geeks</Link>
+            </h2>
           </nav>
 
           <div className="flex-col sm:flex sm:flex-row py-1 sm:items-center">
